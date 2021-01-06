@@ -24,6 +24,8 @@ class BsException
         defined('REQUEST_UNIQUE_ID') || define('REQUEST_UNIQUE_ID', date('His') . uniqid());
 
         defined('ROOT_PATH') || define('ROOT_PATH', dirname(__FILE__) . '/../');
+        
+        defined('LOG_PATH') || define('LOG_PATH', ROOT_PATH . DIRECTORY_SEPARATOR . 'log' . DIRECTORY_SEPARATOR);
     }
 
     public function init_error_reporting_level()
@@ -84,7 +86,8 @@ class BsException
 
     public function inert_log($info, $type = '', $timeType = 'day')
     {
-        $basePath = ROOT_PATH . DIRECTORY_SEPARATOR . 'log' . DIRECTORY_SEPARATOR;
+        $basePath = LOG_PATH;
+        
         if ($type) {
             $basePath .= $type . DIRECTORY_SEPARATOR;
         }
