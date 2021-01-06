@@ -2,6 +2,7 @@
     "name": "bsexception/1.0",
     "description": "error catch",
     "type": "l",
+    "minimum-stability" : "dev",
     "authors": [
         {
             "name": "zhangbb",
