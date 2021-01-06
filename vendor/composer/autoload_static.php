@@ -9,14 +9,14 @@ class ComposerStaticInitfa7ea219802bccb5858c53887a005c1d
     public static $prefixLengthsPsr4 = array (
         'B' => 
         array (
-            'BsException\\' => 12,
+            'Bsexception\\Dev\\' => 16,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'BsException\\' => 
+        'Bsexception\\Dev\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src/exception',
+            0 => __DIR__ . '/../..' . '/',
         ),
     );
 

@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'BsException\\' => array($baseDir . '/src/exception'),
+    'Bsexception\\Dev\\' => array($baseDir . '/'),
 );

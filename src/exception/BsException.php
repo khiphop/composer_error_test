@@ -87,7 +87,7 @@ class BsException
     public function inert_log($info, $type = '', $timeType = 'day')
     {
         $basePath = LOG_PATH;
-        
+
         if ($type) {
             $basePath .= $type . DIRECTORY_SEPARATOR;
         }
