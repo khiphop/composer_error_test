@@ -1,6 +1,6 @@
 <?php
 
-namespace BsException;
+namespace Bsexception\Dev\Src;
 
 class BsException
 {
