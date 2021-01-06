@@ -10,7 +10,7 @@ class BsException
 
         $this->init_error_reporting_level();
 
-        # 不造成中断的 error | warning
+        #1 不造成中断的 error | warning
         set_error_handler(array($this, 'error_handler'));
 
         # 造成中断的 fatal error
