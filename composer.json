@@ -1,0 +1,12 @@
+{
+    "name": "bsexception/1.0",
+    "description": "error catch",
+    "type": "l",
+    "authors": [
+        {
+            "name": "zhangbb",
+            "email": "854641898@qq.com"
+        }
+    ],
+    "require": {}
+}
