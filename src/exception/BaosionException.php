@@ -1,4 +1,7 @@
 <?php
+
+namespace BsException;
+
 class BsException
 {
     public function __construct()
