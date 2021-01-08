@@ -1,31 +1,42 @@
 <?php
 
-namespace Bsexception\Dev\Src\Exception;
+namespace Bsexception\Dev\src\exception;
 
 class BsException
 {
+    private $error_file_name = '';
+    private $fatal_file_name = '';
+    private $log_path = '';
+    private $init_error_reporting_level = '';
+
     public function __construct()
     {
-        $this->init_constants();
+        $this->init_config();
 
-        $this->init_error_reporting_level();
+        if (1 == $this->init_error_reporting_level) {
+            $this->init_error_reporting_level();
+        }
 
-        #1 不造成中断的 error | warning
+        # 不造成中断的 error | warning
         set_error_handler(array($this, 'error_handler'));
 
         # 造成中断的 fatal error
         register_shutdown_function(array($this, 'fatal_handler'));
     }
 
-    public function init_constants()
+    public function init_config()
     {
         defined('APP_ENV') || define('APP_ENV', 'prod');
 
-        defined('REQUEST_UNIQUE_ID') || define('REQUEST_UNIQUE_ID', date('His') . uniqid());
-
         defined('ROOT_PATH') || define('ROOT_PATH', dirname(__FILE__) . '/../');
-        
-        defined('LOG_PATH') || define('LOG_PATH', ROOT_PATH . DIRECTORY_SEPARATOR . 'log' . DIRECTORY_SEPARATOR);
+
+        defined('REQUEST_UNIQUE_ID') || define('REQUEST_UNIQUE_ID', uniqid());
+
+        $config = include_once ROOT_PATH . 'config/bs_exc_config.php';
+
+        foreach ($config as $index => $item) {
+            $this->$index = $item;
+        }
     }
 
     public function init_error_reporting_level()
@@ -76,9 +87,10 @@ class BsException
 
     public function log_message($type, $message)
     {
-        $dir = 'system_error';
+        $dir = $this->error_file_name;
+
         if ('fatal' == $type) {
-            $dir = 'system_' . $type;
+            $dir = $this->fatal_file_name;
         }
 
         $this->inert_log($message, $dir);
@@ -86,7 +98,7 @@ class BsException
 
     public function inert_log($info, $type = '', $timeType = 'day')
     {
-        $basePath = LOG_PATH;
+        $basePath = ROOT_PATH. $this->log_path;
 
         if ($type) {
             $basePath .= $type . DIRECTORY_SEPARATOR;
